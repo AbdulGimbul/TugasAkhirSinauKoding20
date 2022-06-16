@@ -17,7 +17,7 @@ public class TransaksiDTO {
     private Barang barang;
     private Pembeli pembeli;
     private Pembayaran pembayaran;
-    @JsonFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private Date tgl_transaksi;
     private String keterangan;
 }
