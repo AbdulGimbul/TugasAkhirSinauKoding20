@@ -27,6 +27,10 @@ public class SupplierService {
         return SupplierMapping.INSTANCE.toDto(repository.findById(id).get());
     }
 
+    public List<SupplierDTO> findSupplierByNama(String param){
+        return SupplierMapping.INSTANCE.toSupplierDTOList(repository.findByNamaSupplierContaining(param));
+    }
+
     public SupplierDTO updateDataSupplier(SupplierDTO dto, int id){
         Supplier referenceData = repository.findById(id).get();
         referenceData.setIdSupplier(dto.getIdSupplier() != null ? dto.getIdSupplier() : referenceData.getIdSupplier());

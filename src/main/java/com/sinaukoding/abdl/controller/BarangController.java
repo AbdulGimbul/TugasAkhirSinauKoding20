@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/barang")
 public class BarangController {
@@ -27,6 +29,12 @@ public class BarangController {
     public Response findById(@PathVariable int id){
         BarangDTO data = service.findBarangById(id);
         return new Response(data, data == null ? "Barang tidak ditemukan" : "Barang ditemukan", HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/find-by-name")
+    public Response findByName(@RequestParam(value = "name") String name){
+        List<BarangDTO> data = service.findBarangByNama(name);
+        return new Response(data, data != null ? "Data berhasil ditampilkan" : "Data tidak ditemukan", HttpStatus.OK);
     }
 
     @PutMapping(value = "/{id}")

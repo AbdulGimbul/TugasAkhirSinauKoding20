@@ -27,6 +27,10 @@ public class PembeliService {
         return PembeliMapping.INSTANCE.toDto(repository.findById(id).get());
     }
 
+    public List<PembeliDTO> findPembeliByNama(String param){
+        return PembeliMapping.INSTANCE.toPembeliDTOList(repository.findByNamaPembeliContaining(param));
+    }
+
     public PembeliDTO updateDataPembeli(PembeliDTO dto, int id){
         Pembeli referenceData = repository.findById(id).get();
         referenceData.setIdPembeli(dto.getIdPembeli() != null ? dto.getIdPembeli() : referenceData.getIdPembeli());

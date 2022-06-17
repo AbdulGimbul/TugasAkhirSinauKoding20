@@ -28,6 +28,10 @@ public class BarangService {
         return BarangMapping.INSTANCE.toDto(repository.findById(id).get());
     }
 
+    public List<BarangDTO> findBarangByNama(String param){
+        return BarangMapping.INSTANCE.toBarangDTOList(repository.findByNamaBarangContaining(param));
+    }
+
     public BarangDTO updateDataBarang(BarangDTO dto, Integer id){
         Barang referenceData = repository.findById(id).get();
         referenceData.setNamaBarang(dto.getNamaBarang() != null ? dto.getNamaBarang() : referenceData.getNamaBarang());

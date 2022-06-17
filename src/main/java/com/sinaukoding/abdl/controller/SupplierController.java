@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/supplier")
 public class SupplierController {
@@ -28,6 +30,12 @@ public class SupplierController {
     public Response findById(@PathVariable int id){
         SupplierDTO data = service.findSupplierById(id);
         return new Response(data, data == null ? "Data dengan id tersebut tidak ditemukan" : "Data berhasil ditampikan", HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/find-by-name")
+    public Response findByName(@RequestParam(value = "name") String name){
+        List<SupplierDTO> data = service.findSupplierByNama(name);
+        return new Response(data, data != null ? "Data berhasil ditampilkan" : "Data tidak ditemukan", HttpStatus.OK);
     }
 
     @PutMapping(value = "/{id}")
